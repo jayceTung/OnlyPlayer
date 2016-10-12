@@ -5,6 +5,8 @@
     <string name="menu_local_video">本地视频</string>
     <string name="menu_online_video">在线视频</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="cube_views_load_more_loading">loading...</string>
     <string name="cube_views_load_more_click_to_load_more">Click to load more</string>

@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.asuper.onlyplayer.media.IjkVideoView;
 
@@ -24,12 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private IjkVideoView mView;
     private Button mBtn;
     private TextView mText;
-    private VideoView videoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ma);
         mView = (IjkVideoView) findViewById(R.id.view);
 
         mBtn = (Button) findViewById(R.id.button);
@@ -43,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-        videoView = (VideoView) findViewById(R.id.video);
     }
 
     @Override
@@ -55,24 +51,14 @@ public class MainActivity extends AppCompatActivity {
             int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             actualimagecursor.moveToFirst();
             String img_path = actualimagecursor.getString(actual_image_column_index);
-            String VideoPath= Environment.getExternalStorageDirectory()
-                    .getAbsolutePath() + "/使徒行者HD粤语中字.mp4";
 
 
             File file = new File(img_path);
             Log.i(TAG, "file is " + file.exists());
             mText.setText(img_path);
-
-            videoView.setVideoPath(img_path);
-            videoView.start();
+            mView.stopPlayback();
             mView.setVideoPath(img_path);
             mView.start();
         }
-    }
-
-    private String getLocalVideoPath(String name) {
-        String sdCard = Environment.getExternalStorageDirectory().getPath();
-        String uri = sdCard + File.separator + name;
-        return uri;
     }
 }

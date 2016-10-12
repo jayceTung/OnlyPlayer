@@ -30,7 +30,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -40,6 +39,7 @@ import android.widget.MediaController;
 import android.widget.TableLayout;
 
 import com.asuper.onlyplayer.R;
+import com.asuper.onlyplayer.utils.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -293,9 +293,8 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
         AudioManager am = (AudioManager) mAppContext.getSystemService(Context.AUDIO_SERVICE);
         am.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-
         try {
-            mMediaPlayer = createPlayer(mSettings.getPlayer());
+            mMediaPlayer = createPlayer(1);
 
             // TODO: create SubtitleController in MediaPlayer, but we need
             // a context for the subtitle renderers
