@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">OnlyPlayer</string>
 
+    <string name="action_settings">设置</string>
 
     <string name="menu_local_video">本地视频</string>
     <string name="menu_online_video">在线视频</string>

@@ -4,15 +4,20 @@ import java.io.Serializable;
 
 /**
  * SD卡上的视频信息存放类
- *
  */
-public class FileBean implements Serializable{
-    /**文件夹路径**/
+public class FileBean extends Bean
+        implements Serializable {
+    /**
+     * 文件夹路径
+     **/
     public String path;
-    /**文件夹里有多少个视频文件**/
+    /**
+     * 文件夹里有多少个视频文件
+     **/
     public int count;
     private static final long serialVersionUID = 1L;
     public String name;
+
     public FileBean() {
     }
 

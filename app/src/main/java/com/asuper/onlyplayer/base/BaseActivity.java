@@ -1,6 +1,8 @@
 package com.asuper.onlyplayer.base;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +11,13 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
+
 /**
  * 基本Activity
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private ExitAppReceiver mExitAppReceiver = new ExitAppReceiver();
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -21,6 +26,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode().setDuration(800));
         this.setContentView(this.getLayoutId());
+        registerReceiver();
+        ButterKnife.bind(this);
         this.initToolbar(savedInstanceState);
         this.initViews(savedInstanceState);
         this.initData();
@@ -77,6 +84,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+        unregisterReceiver(mExitAppReceiver);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -101,5 +116,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         setTitle(strTitle);
         getSupportActionBar().setDisplayShowHomeEnabled(showHome);
         getSupportActionBar().setDisplayHomeAsUpEnabled(showHome);
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Constant.EXIT_APP_ACTION);
+        registerReceiver(mExitAppReceiver, filter);
+    }
+
+    public void gotoActivity(Class<?> clazz) {
+        Intent intent = getIntent();
+        intent.setClass(this, clazz);
+        startActivity(intent);
     }
 }

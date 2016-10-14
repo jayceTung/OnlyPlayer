@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
+
 
 public abstract class BaseFragment extends Fragment {
+    private ExitAppReceiver mReceiver = new ExitAppReceiver();
+
     protected Activity mActivity;
     protected View contentView;
     @Override
@@ -24,9 +28,16 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, contentView);
         initViews(view);
         initDatas();
         initListeners();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        ButterKnife.unbind(this);
     }
 
     /**
