@@ -8,6 +8,9 @@
     <color name="white">#ffffff</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="ripple_color">#A0A0A0</color>
+
 
     <color name="ijk_color_blue_main">@color/ijk_color_blue_500</color>
     <color name="ijk_color_blue_50">#E3F2FD</color>
