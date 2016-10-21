@@ -13,10 +13,9 @@ import butterknife.ButterKnife;
 
 
 public abstract class BaseFragment extends Fragment {
-    private ExitAppReceiver mReceiver = new ExitAppReceiver();
-
     protected Activity mActivity;
     protected View contentView;
+
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
@@ -25,12 +24,16 @@ public abstract class BaseFragment extends Fragment {
         return contentView;
     }
 
+    /**
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, contentView);
         initViews(view);
-        initDatas();
+        initData();
         initListeners();
     }
 
@@ -62,7 +65,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * init data
      */
-    protected abstract void initDatas();
+    protected abstract void initData();
     /**
      * show toast
      */
@@ -71,4 +74,5 @@ public abstract class BaseFragment extends Fragment {
             Toast.makeText(mActivity , msg,Toast.LENGTH_SHORT).show();
         }
     }
+
 }

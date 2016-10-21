@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.asuper.onlyplayer.R;
 import com.asuper.onlyplayer.base.BaseActivity;
+import com.asuper.onlyplayer.ui.fragment.FileListFragment;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,7 +54,7 @@ public class MainActivity extends BaseActivity
         ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.navigation_menu_item_color);
         navigationView.setItemTextColor(csl);
 
-//        listFragment = FileListFragment.newInstance(null, null);
+        listFragment = FileListFragment.newInstance(null, null);
 //        settingsFragment = SettingsFragment.newInstance(null ,null);
 //        aboutFragment = AboutFragment.newInstance(null ,null);
 //        meizhiFragment = MeizhiClassifyFragment.newInstance(null, null);
