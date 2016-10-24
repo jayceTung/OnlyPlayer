@@ -1,7 +1,6 @@
 package com.asuper.onlyplayer.view;
 
-import com.asuper.onlyplayer.bean.Bean;
-
+import java.io.File;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public interface FileListView extends MvpView {
      * 加载成功数据
      * @param data
      */
-    void onDataSuccess(List<? extends Bean> data);
+    void onDataSuccess(List<File> data);
 
     /**
      * 加载失败

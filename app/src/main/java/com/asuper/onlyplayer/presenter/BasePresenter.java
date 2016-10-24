@@ -13,7 +13,7 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     private static final String TAG = "BasePresenter";
 
     private T mvpView;
-    private CompositeSubscription mCompositeSubscription;
+    public CompositeSubscription mCompositeSubscription;
 
     @Override
     public void attachView(T view) {

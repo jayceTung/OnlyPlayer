@@ -38,7 +38,7 @@ public class FileUtil {
         return null;
     }
 
-    private String getFileSize(long size) {
+    public static String getFileSize(long size) {
         if (size < KB) {
             return String.format("%.1f", size) + "B";
         } else if (size < MB) {
