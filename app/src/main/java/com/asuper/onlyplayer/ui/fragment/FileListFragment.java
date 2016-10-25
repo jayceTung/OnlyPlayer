@@ -94,7 +94,14 @@ public class FileListFragment extends BaseFragment
     protected void initListeners() {
         mPresenter = new FileListPresenter(this);
         mPresenter.loadData(Environment.getExternalStorageDirectory());
-        mRefreshView.setRefreshing(true);
+        //SwipeRefreshLayout进入页面自动刷新
+        mRefreshView.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshView.setRefreshing(true);
+            }
+        });
+
         mRefreshView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
