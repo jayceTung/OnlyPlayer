@@ -18,16 +18,27 @@ import com.asuper.onlyplayer.R;
 import com.asuper.onlyplayer.base.BaseActivity;
 import com.asuper.onlyplayer.ui.fragment.FileListFragment;
 
+import butterknife.Bind;
+
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Fragment listFragment, settingsFragment, meizhiFragment, onlineVideoFragment;
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @Bind(R.id.nav_view)
+    NavigationView mNavigationView;
+
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawer;
 
 
     /**
      * Fill in layout id
      *
      * @return layout id
-     */
+    */
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -40,19 +51,17 @@ public class MainActivity extends BaseActivity
      */
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
         Resources resource = (Resources) getBaseContext().getResources();
         ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.navigation_menu_item_color);
-        navigationView.setItemTextColor(csl);
+        mNavigationView.setItemTextColor(csl);
 
         listFragment = FileListFragment.newInstance(null, null);
 //        settingsFragment = SettingsFragment.newInstance(null ,null);
@@ -74,7 +83,7 @@ public class MainActivity extends BaseActivity
         getSupportActionBar().setTitle("目录");
         transaction.commit();
 
-        navigationView.getMenu().getItem(0).setChecked(true);
+        mNavigationView.getMenu().getItem(0).setChecked(true);
     }
 
     /**
@@ -105,7 +114,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 //        if (onlineVideoFragment != null) {
 //            ((OnlineVideoFragment) onlineVideoFragment).onBackPressed();
 //        }

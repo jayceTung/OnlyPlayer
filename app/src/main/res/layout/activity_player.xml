@@ -13,11 +13,11 @@
         android:layout_height="match_parent"
         android:background="#0099cc">
 
-        <tv.danmaku.ijk.media.example.widget.media.IjkVideoView
+        <com.asuper.onlyplayer.media.IjkVideoView
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"></tv.danmaku.ijk.media.example.widget.media.IjkVideoView>
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/toast_text_view"
@@ -47,11 +47,4 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             tools:context=".toolbar_widget" />
     </FrameLayout>
-
-    <!-- The navigation drawer -->
-    <FrameLayout android:id="@+id/right_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:background="@color/ijk_transparent_dark" />
 </android.support.v4.widget.DrawerLayout>

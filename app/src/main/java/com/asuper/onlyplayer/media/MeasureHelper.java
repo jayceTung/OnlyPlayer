@@ -39,7 +39,7 @@ public final class MeasureHelper {
     private int mMeasuredWidth;
     private int mMeasuredHeight;
 
-    private int mCurrentAspectRatio = IRenderView.AR_ASPECT_FIT_PARENT;
+    private int mCurrentAspectRatio = IRenderView.AR_ASPECT_FILL_PARENT;
 
     public MeasureHelper(View view) {
         mWeakView = new WeakReference<View>(view);

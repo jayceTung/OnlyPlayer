@@ -1,6 +1,7 @@
 package com.asuper.onlyplayer.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asuper.onlyplayer.R;
+import com.asuper.onlyplayer.base.Constant;
+import com.asuper.onlyplayer.ui.activity.VideoActivity;
 import com.asuper.onlyplayer.utils.FileUtil;
 
 import java.io.File;
@@ -44,9 +47,18 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
     @Override
     public void onBindViewHolder(FileListViewHolder holder, int position) {
         if (holder instanceof FileListViewHolder) {
-            File file = mList.get(position);
+            final File file = mList.get(position);
             holder.mNameView.setText(file.getName());
             holder.mSizeView.setText(FileUtil.getFileSize(file.length()));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, VideoActivity.class);
+                    intent.putExtra(Constant.FILE_VIDEO_PATH, file.getAbsolutePath());
+                    intent.putExtra(Constant.FILE_VIDEO_TITLE, file.getName());
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 

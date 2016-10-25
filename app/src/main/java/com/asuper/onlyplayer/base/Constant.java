@@ -6,4 +6,7 @@ package com.asuper.onlyplayer.base;
 public class Constant {
     public static final String EXIT_APP_ACTION = "com.asuper.exit_app";
 
+    public static final String FILE_VIDEO_PATH = "file_video_path";
+    public static final String FILE_VIDEO_TITLE = "file_video_title";
+
 }
