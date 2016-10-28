@@ -67,8 +67,7 @@ public class FileListModel implements BaseModel {
 
     @Override
     public void destroy() {
-        subscription.unsubscribe();
-        subscription = null;
+
     }
 
     /**

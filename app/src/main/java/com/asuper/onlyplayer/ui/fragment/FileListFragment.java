@@ -88,11 +88,11 @@ public class FileListFragment extends BaseFragment
                         .getDisplayMetrics()));
         mFilesView.setLayoutManager(new WrapContentLinearLayoutManager(getActivity()));
         mFilesView.setAdapter(mFileAdapter);
+        mPresenter = new FileListPresenter(this);
     }
 
     @Override
     protected void initListeners() {
-        mPresenter = new FileListPresenter(this);
         mPresenter.loadData(Environment.getExternalStorageDirectory());
         //SwipeRefreshLayout进入页面自动刷新
         mRefreshView.post(new Runnable() {
@@ -113,6 +113,7 @@ public class FileListFragment extends BaseFragment
     @Override
     protected void initData() {
         File rootFile = Environment.getExternalStorageDirectory();
+        mPresenter.attachView(this);
         Log.i(TAG, "rootFile = " + rootFile);
     }
 

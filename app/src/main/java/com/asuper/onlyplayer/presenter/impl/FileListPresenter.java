@@ -42,6 +42,5 @@ public class FileListPresenter extends BasePresenter<FileListView>
     @Override
     public void detachView() {
         super.detachView();
-        mFileListModel.destroy();
     }
 }

@@ -15,9 +15,9 @@ import com.asuper.onlyplayer.base.BaseActivity;
 import com.asuper.onlyplayer.base.Constant;
 import com.asuper.onlyplayer.media.IjkVideoView;
 import com.asuper.onlyplayer.media.MeasureHelper;
+import com.asuper.onlyplayer.utils.Log;
 
 import butterknife.Bind;
-import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * Created by Super on 2016/10/25.
@@ -37,9 +37,6 @@ public class VideoActivity extends BaseActivity {
 
     @Bind(R.id.hud_view)
     TableLayout mHubView;
-
-    @Bind(R.id.toast_text_view)
-    TextView mToastView;
 
     private String mVideoPath;
     private String mVideoTitle;
@@ -162,6 +159,11 @@ public class VideoActivity extends BaseActivity {
         } else {
             mVideoView.enterBackground();
         }
-        IjkMediaPlayer.native_profileEnd();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i(TAG, "onDestroy");
+        super.onDestroy();
     }
 }

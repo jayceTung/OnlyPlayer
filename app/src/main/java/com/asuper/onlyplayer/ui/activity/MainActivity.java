@@ -17,11 +17,14 @@ import android.view.MenuItem;
 import com.asuper.onlyplayer.R;
 import com.asuper.onlyplayer.base.BaseActivity;
 import com.asuper.onlyplayer.ui.fragment.FileListFragment;
+import com.asuper.onlyplayer.utils.Log;
 
 import butterknife.Bind;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainActivity";
+
     private Fragment listFragment, settingsFragment, meizhiFragment, onlineVideoFragment;
 
     @Bind(R.id.toolbar)
@@ -179,5 +182,11 @@ public class MainActivity extends BaseActivity
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i(TAG, "onDestroy");
+        super.onDestroy();
     }
 }
