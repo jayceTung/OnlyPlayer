@@ -4,20 +4,49 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+    signingConfigs {
+        debug {
+
+        }
+        release {
+            keyAlias 'onlyplayer'
+            storeFile file('../key/onlyplayer.jks')
+            if (System.console() != null) {
+                keyPassword System.console().readLine("\nKey password: ")
+                storePassword System.console().readLine("\nKeystore password: ")
+            }
+        }
+    }
+
     defaultConfig {
         applicationId "com.asuper.onlyplayer"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
     }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
-
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,10 +67,12 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.jakewharton:butterknife:7.0.1'
-    //retrofit
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
-    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+    // retrofit2 + okhttp3
+    compile 'com.squareup.retrofit2:retrofit:2.0.+'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.+'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.+'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //Rxjava + Rxandroid
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'io.reactivex:rxjava:1.1.5'

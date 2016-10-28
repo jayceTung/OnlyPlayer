@@ -25,7 +25,8 @@ public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
 
-    private Fragment listFragment, settingsFragment, meizhiFragment, onlineVideoFragment;
+    private Fragment listFragment;
+//            settingsFragment, meizhiFragment, onlineVideoFragment;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -152,19 +153,19 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.hide(listFragment).hide(settingsFragment).hide(onlineVideoFragment).hide(meizhiFragment);
+//        transaction.hide(listFragment).hide(settingsFragment).hide(onlineVideoFragment).hide(meizhiFragment);
         if (id == R.id.nav_camera) {
-            getSupportActionBar().setTitle("目录");
+            getSupportActionBar().setTitle(getString(R.string.video_list));
             transaction.show(listFragment).commit();
-        } else if (id == R.id.nav_gallery) {
-            getSupportActionBar().setTitle("设置");
-            transaction.show(settingsFragment).commit();
-        } else if (id == R.id.nav_slideshow) {
-            getSupportActionBar().setTitle("在线");
-            transaction.show(onlineVideoFragment).commit();
-        } else if (id == R.id.nav_manage) {
-            getSupportActionBar().setTitle("妹纸");
-            transaction.show(meizhiFragment).commit();
+//        } else if (id == R.id.nav_gallery) {
+//            getSupportActionBar().setTitle("设置");
+//            transaction.show(settingsFragment).commit();
+//        } else if (id == R.id.nav_slideshow) {
+//            getSupportActionBar().setTitle("在线");
+//            transaction.show(onlineVideoFragment).commit();
+//        } else if (id == R.id.nav_manage) {
+//            getSupportActionBar().setTitle("妹纸");
+//            transaction.show(meizhiFragment).commit();
         }
         /*else if (id == R.id.nav_share) {
 

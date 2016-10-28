@@ -6,6 +6,11 @@
     <string name="menu_local_video">本地视频</string>
     <string name="menu_online_video">在线视频</string>
 
+    <string name="video_list">视频列表</string>
+    <string name="setting">设置</string>
+    <string name="video_online">在线视频</string>
+    <string name="girls">妹纸</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
