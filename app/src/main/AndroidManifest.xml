@@ -30,6 +30,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme"/>
+
+        //多渠道打包
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_NAME}" />
     </application>
 
 </manifest>
