@@ -30,7 +30,8 @@ public class OnlyPlayerApp extends MultiDexApplication {
         sContext = this;
 
         //catch exception
-        Thread.setDefaultUncaughtExceptionHandler(new SimpleUncaughtExceptionHandler());
+        SimpleUncaughtExceptionHandler handler = SimpleUncaughtExceptionHandler.getInstance();
+        handler.init(getContext());
     }
 
     public static Context getContext() {
