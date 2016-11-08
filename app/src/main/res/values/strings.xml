@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">OnlyPlayer</string>
+    <string name="app_name_debug">OnlyPlay_Debug</string>
 
     <string name="action_settings">设置</string>
 

@@ -47,6 +47,7 @@ android {
             shrinkResources false
             versionNameSuffix "-debug"
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [app_label: "@string/app_name_debug"]
         }
         release {
             minifyEnabled true
@@ -99,6 +100,7 @@ def revision() {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.2'
