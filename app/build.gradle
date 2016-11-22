@@ -15,6 +15,8 @@ android {
                 keyPassword System.console().readLine("\nKey password: ")
                 storePassword System.console().readLine("\nKeystore password: ")
             }
+            keyPassword '123456'
+            storePassword '123456'
         }
     }
 
@@ -37,6 +39,10 @@ android {
     }
 
     lintOptions {
+        disable 'InvalidPackage'
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
         abortOnError false
     }
 
@@ -56,13 +62,25 @@ android {
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+
+            android.applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    // 删除unaligned apk
+                    if (output.zipAlign != null) {
+                        output.zipAlign.doLast {
+                            output.zipAlign.inputFile.delete()
+                        }
+                    }
+                }
+            }
+
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk
-                        def fileName = "OnlyPlayer_v${defaultConfig.versionName}_${buildTime()}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
+                        def fileName = "${rootDir}/apk/OnlyPlayer_v${defaultConfig.versionName}_${buildTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(fileName)
                     }
                 }
             }
@@ -98,14 +116,27 @@ def revision() {
     return code.toString()
 }
 
+def gitVersion() {
+    if (!System.getenv('CI_BUILD')) { // 不通过CI进行build的时候返回01
+        // don't care
+        return 1
+    }
+    def cmd = 'git rev-list HEAD --first-parent --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.2'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.2'
-    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.6.2'
+
+    compile([
+            'com.android.support:appcompat-v7:23.1.0',
+            'tv.danmaku.ijk.media:ijkplayer-java:0.6.2',
+            'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.2',
+            'tv.danmaku.ijk.media:ijkplayer-exo:0.6.2'
+    ])
 
     compile 'com.android.support:preference-v7:23.0.1'
     compile 'com.android.support:design:23.4.0'
