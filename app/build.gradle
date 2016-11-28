@@ -33,6 +33,12 @@ android {
         manifestPlaceholders = [app_label: "@string/app_name"]
     }
 
+    packagingOptions{
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
     dexOptions {
         incremental true
         javaMaxHeapSize "4g"
