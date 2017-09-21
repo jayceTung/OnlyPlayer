@@ -98,7 +98,7 @@ public class FileListFragment extends BaseFragment
         mRefreshView.post(new Runnable() {
             @Override
             public void run() {
-                mRefreshView.setRefreshing(true);
+                mRefreshView.setRefreshing(false);
             }
         });
 
